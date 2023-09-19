@@ -7,7 +7,7 @@ Dies ist ein einfacher Node.js-Server, der einen Stundenplan von WebUntis abruft
 Bevor Sie den Server ausführen können, müssen Sie sicherstellen, dass Node.js auf Ihrem System installiert ist. Außerdem benötigen Sie die folgenden Node.js-Pakete, die in der `package.json`-Datei aufgeführt sind:
 
 - `http`: Das integrierte HTTP-Modul von Node.js.
-- `webuntis`: Eine Bibliothek zur Interaktion mit dem WebUntis-System.
+- `webuntis`: Eine Bibliothek zur Interaktion mit dem WebUntis-System (https://github.com/SchoolUtils/WebUntis). 
 - `date-fns`: Eine Bibliothek zur Verarbeitung von Datum und Uhrzeit.
 - `date-fns/locale/de`: Ein Datei zur Unterstützung der deutschen Sprache.
 
