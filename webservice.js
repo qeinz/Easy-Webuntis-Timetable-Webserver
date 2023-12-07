@@ -21,7 +21,6 @@ const server =
                 'Content-Type': 'application/json'
             });
 
-            try {
                 let requestBody = '';
 
                 req.on('data', (chunk) => {
@@ -134,7 +133,7 @@ const server =
 
                         res.end(JSON.stringify(timetable));
                     } else if (route === 'inbox') {
-                        try {
+
                             const untis = new WebUntis(cleanedSchool, username, password, host);
 
                             const loginResponse = await untis.login();
@@ -146,19 +145,16 @@ const server =
 
                             const inbox = await untis.getInbox();
                             res.end(JSON.stringify(inbox));
-                        } catch (error) {
-                            console.error("Fehler beim Login:", error.message);
-                            res.end(JSON.stringify({status: 'invalid', error: 'Ungültige Anmeldedaten'}));
-                        }
 
                     } else {
                         res.end(JSON.stringify({error: 'Ungültige Route'}));
                     }
                 });
-            } catch (error) {
-                console.error("Fehler beim Verarbeiten der Anfrage:", error.message);
-                res.end(JSON.stringify({error: "Fehler beim Verarbeiten der Anfrage"}));
-            }
+
+                process.on('uncaughtException', function (err) {
+                    console.log(err);
+                    res.end(JSON.stringify({error: "Fehler beim Verarbeiten der Anfrage", error_code: err.toString()}));
+                });
         });
     });
 
